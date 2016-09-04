@@ -6,8 +6,9 @@ angular.module('myApp', [
     'ngResource',
     'ngCookies',
     'ngStorage',
+    'myApp.services',
+    'myApp.directives',
     'myApp.controllers',
-    'myApp.services'
 ]).
     config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
@@ -22,4 +23,5 @@ angular.module('myApp', [
 
 //Initializations
 angular.module('myApp.services', []);
+angular.module('myApp.directives', []);
 angular.module('myApp.controllers', []);

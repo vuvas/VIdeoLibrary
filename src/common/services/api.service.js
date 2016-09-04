@@ -16,7 +16,6 @@ angular.module('myApp.services')
                 sessionObj[SessionLocalStorageKey] = sessionId;
                 fullParams = angular.extend(sessionObj, params);
             }
-            console.log('fullParams',fullParams);
             return fullParams;
         };
 

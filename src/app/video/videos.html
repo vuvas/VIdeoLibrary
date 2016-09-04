@@ -1,7 +1,16 @@
-<h3>Videos</h3>
-<ul>
-    <li ng-repeat=" video  in videos">
-        {{video.name}}
-    </li>
-</ul>
+<div class="container"
+    lazy-scroll="loadVideos()"
+    lazy-scroll-trigger="80"
+    lazy-no-scroll="false">
+    <h2>Videos</h2>
+    <ul>
+        <li ng-repeat="video in videos">
+            <div class="container video-container">
+                {{video.name}}
+                {{ video.description }}
+                <hr>
+            </div>
+        </li>
+    </ul>
+</div>
 
