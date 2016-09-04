@@ -16,7 +16,6 @@ function VideosController($scope, ApiService) {
             };
             ApiService.GetObject(API.Video.Get.Videos, param).then(function (response) {
                 if (response.status == "success") {
-                    //console.log("Response", response);
                     $scope.videos = $scope.videos.concat(response.data);
                     page++;
                 } else {

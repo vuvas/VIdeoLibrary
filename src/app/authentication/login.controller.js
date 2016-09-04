@@ -3,7 +3,7 @@
 angular.module('myApp.controllers')
     .controller('LoginCtrl', LoginController);
 
-function LoginController($scope, $location, ApiService, UserService) {
+function LoginController($scope, $location,md5, ApiService, UserService) {
     $scope.login = login;
 
     (function initController() {
@@ -15,7 +15,7 @@ function LoginController($scope, $location, ApiService, UserService) {
         $scope.dataLoading = true;
         var user = {
             username: $scope.username,
-            password: $scope.password
+            password: md5.createHash($scope.password || '') //MD5 encryption of password
         };
 
         ApiService.Post(API.User.Post.Auth).save(user, function (response) {

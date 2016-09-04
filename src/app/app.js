@@ -5,6 +5,7 @@ angular.module('myApp', [
     'ngRoute',
     'ngResource',
     'ngCookies',
+    'angular-md5',
     'ngStorage',
     'myApp.services',
     'myApp.directives',
