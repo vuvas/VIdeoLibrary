@@ -3,8 +3,9 @@
 angular.module('myApp.controllers')
     .controller('VideosCtrl', VideosController);
 
-function VideosController($scope, ApiService) {
+function VideosController($scope, ApiService,$sce) {
     $scope.videos = [];
+    $scope.rootURL = RootAPIUrl;
     var pageSize = 10, page = 0;
     var inProgress = true;
 
@@ -23,6 +24,25 @@ function VideosController($scope, ApiService) {
                 }
             });
 
+        }
+    };
+
+    this.config = {
+        preload: "none",
+        sources: [
+            {
+                src: $sce.trustAsResourceUrl("asset/videos/What_is_the_MEAN_Stack.mp4"),
+                type: "video/mp4"
+            }
+        ],
+        theme: {
+            url: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
+        },
+        plugins: {
+            controls: {
+                autoHide: false ,
+                autoHideTime: 5000
+            }
         }
     };
 
