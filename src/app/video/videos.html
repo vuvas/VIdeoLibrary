@@ -1,42 +1,20 @@
-<div class="container">
 
-    <div class="row">
-
-        <div class="col-lg-12">
-            <h1 class="page-header">Thumbnail Gallery</h1>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="asset/img/400x300.png" alt="">
-            </a>
-        </div>
-
-
-
-    </div>
-
-</div>
 <div class="container"
-    lazy-scroll="loadVideos()"
-    lazy-scroll-trigger="80"
-    lazy-no-scroll="false">
-    <h2>Videos</h2>
-
-    <div class="row" ng-repeat="video in videos">
-        <div class="container video-container">
-            {{video.name}}
-            {{ video.description }}
-            <hr>
-        </div>
+     lazy-scroll="loadVideos()"
+     lazy-scroll-trigger="80"
+     lazy-no-scroll="false">
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Video Gallery</h1>
         </div>
+    </div>
 
-        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-            <a class="thumbnail" href="#"></a>
+    <div class="row" ng-repeat="video in videos">
+        <div class="col-lg-4 col-md-4 col-xs-6">
+            <a class="thumbnail" href="#!/video/{{video._id}}">{{video.name}}</a>
             <videogular vg-theme="config.theme.url">
-                <vg-media vg-src="rootURL + video.url"
+                <vg-media vg-src="video.trustedURL"
+                          vg-native-controls="config.useNativeControls"
                           vg-tracks="config.tracks">
                 </vg-media>
                 <vg-controls
@@ -58,22 +36,11 @@
                     <vg-fullscreen-button></vg-fullscreen-button>
                 </vg-controls>
             </videogular>
-
+            <br/>
+            <div rating rating-value="video.rating" max="max" on-rating-selected="saveRating(video)"></div>
+            <hr/>
+            <p>{{video.description}}</p>
         </div>
 
-
-
     </div>
-
-    <ul>
-        <li ng-repeat="video in videos">
-            <div class="container video-container">
-                {{video.name}}
-                <hr>
-                {{ video.description }}
-            </div>
-        </li>
-    </ul>
 </div>
-
-

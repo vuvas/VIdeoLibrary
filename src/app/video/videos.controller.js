@@ -18,6 +18,14 @@ function VideosController($scope, ApiService,$sce) {
             ApiService.GetObject(API.Video.Get.Videos, param).then(function (response) {
                 if (response.status == "success") {
                     $scope.videos = $scope.videos.concat(response.data);
+                        var sum = 0;
+                    _.forEach($scope.videos,function(v){
+                         v.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + v.url);
+                         v.rating = Math.round(_.reduce(v.ratings, function(memo, num) {
+                                 return memo + num;
+                             }, 0) / (v.ratings.length === 0 ? 1 : v.ratings.length));
+                        return v;
+                    });
                     page++;
                 } else {
                     inProgress = false;
@@ -25,18 +33,15 @@ function VideosController($scope, ApiService,$sce) {
             });
 
         }
+
     };
 
     this.config = {
         preload: "none",
-        sources: [
-            {
-                src: $sce.trustAsResourceUrl("asset/videos/What_is_the_MEAN_Stack.mp4"),
-                type: "video/mp4"
-            }
-        ],
+        type: "video/mp4",
+        useNativeControls: true,
         theme: {
-            url: "http://www.videogular.com/styles/themes/default/latest/videogular.css"
+            url: "../bower_components/videogular-themes-default/videogular.min.css"
         },
         plugins: {
             controls: {
@@ -48,4 +53,5 @@ function VideosController($scope, ApiService,$sce) {
 
     //Fetch first 10 videos
     $scope.loadVideos();
+    console.log("v",$scope.videos);
 }

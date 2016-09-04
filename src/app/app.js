@@ -8,12 +8,13 @@ angular.module('myApp', [
     'angular-md5',
     'ngStorage',
     'ngSanitize',
+
     'myApp.services',
     'myApp.directives',
     'myApp.controllers',
+
     'com.2fdevs.videogular',
     'com.2fdevs.videogular.plugins.controls'
-
 
 ]).
     config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
@@ -24,6 +25,9 @@ angular.module('myApp', [
         }).when('/video', {
             templateUrl: 'app/video/videos.html',
             controller: 'VideosCtrl'
+        }).when('/video/:videoId', {
+            templateUrl: 'app/video/video-detail.html',
+            controller: 'VideoDetailCtrl'
         }).otherwise({redirectTo: '/login'});
     }]);
 
