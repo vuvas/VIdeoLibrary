@@ -18,6 +18,12 @@ var API = {
         }
     },
     Video : {
-        SaveRestaurant : "Values/SaveRestaurant"
+        Get : {
+            Videos : "videos",
+            Video :  "video"
+        },
+        Post : {
+            Rate : "video/ratings"
+        }
     }
 };

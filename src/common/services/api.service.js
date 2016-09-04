@@ -10,10 +10,13 @@ angular.module('myApp.services')
 
         var buildParams = function (params) {
             var fullParams = params;
-            var sessionId =  StorageService.Get(SessionLocalStorageKey);
+            var sessionId =  StorageService.Get(SessionLocalStorageKey);    
             if (sessionId !== undefined) {
-                fullParams = angular.extend(sessionId, params);
+                var sessionObj = {};
+                sessionObj[SessionLocalStorageKey] = sessionId;
+                fullParams = angular.extend(sessionObj, params);
             }
+            console.log('fullParams',fullParams);
             return fullParams;
         };
 
