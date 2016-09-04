@@ -2,8 +2,9 @@
  * Created by Jared on Sep 03, 2016.
  */
 
-var GETObject = {'get': {method: 'GET', isArray: false,crypt: true}};
+
 var GET = {'get': {method: 'GET', isArray: true,crypt: true}};
+var GETObject = {'get': {method: 'GET', isArray: false,crypt: true}};
 var POST = {'post': {method: 'POST',crypt: true}};
 var RootAPIUrl = "http://localhost:3000/";
 var SessionLocalStorageKey = 'sessionId';

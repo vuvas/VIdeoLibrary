@@ -3,12 +3,11 @@
 angular.module('myApp.controllers')
     .controller('VideosCtrl', VideosController);
 
-    function VideosController (ApiService) {
-
+    function VideosController ($scope,ApiService) {
         (function initController() {
-            //Reset login status
-            ApiService.Get(API.Video.Get.Videos, {}).then(function (data) {
-                console.log("data",data);
+            //Fetch Videos
+            ApiService.GetObject(API.Video.Get.Videos, {}).then(function (response) {
+                $scope.videos = response.data;
             });
         })();
     }
