@@ -5,13 +5,19 @@
 var GETObject = {'get': {method: 'GET', isArray: false,crypt: true}};
 var GET = {'get': {method: 'GET', isArray: true,crypt: true}};
 var POST = {'post': {method: 'POST',crypt: true}};
-var RootAPIUrl = "http://localhost:6778/api/";
+var RootAPIUrl = "http://localhost:3000/";
+var SessionLocalStorageKey = 'sessionId';
 
 var API = {
-    Get : {
-        AllRestaurants : "Values/GetAllRestaurants"
+    User : {
+        Get: {
+            Logout : "user/logout"
+        },
+        Post: {
+            Auth: "user/auth"
+        }
     },
-    Post : {
+    Video : {
         SaveRestaurant : "Values/SaveRestaurant"
     }
 };

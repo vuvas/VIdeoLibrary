@@ -4,18 +4,20 @@
 angular.module('myApp', [
     'ngRoute',
     'ngResource',
+    'ngCookies',
+    'ngStorage',
     'myApp.controllers',
     'myApp.services'
 ]).
     config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
-        $routeProvider.when('/view1', {
-            templateUrl: 'app/authentication/view1.html',
-            controller: 'View1Ctrl'
-        }).when('/view2', {
+        $routeProvider.when('/login', {
+            templateUrl: 'app/authentication/login.html',
+            controller: 'LoginCtrl'
+        }).when('/video', {
             templateUrl: 'app/video/view2.html',
             controller: 'View2Ctrl'
-        }).otherwise({redirectTo: '/view1'});
+        }).otherwise({redirectTo: '/login'});
     }]);
 
 //Initializations
