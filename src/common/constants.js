@@ -8,6 +8,7 @@ var GETObject = {'get': {method: 'GET', isArray: false,crypt: true}};
 var POST = {'post': {method: 'POST',crypt: true}};
 var RootAPIUrl = "http://localhost:3000/";
 var SessionLocalStorageKey = 'sessionId';
+var RatingMaxValue = 5;
 
 var API = {
     User : {

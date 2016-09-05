@@ -143,7 +143,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'cleanBuild',
         'remove temporary files from build',
-        ['clean:assets', 'clean:app']
+        ['clean:assets', 'clean:app','clean:scripts', 'clean:stylesheets']
     );
 
     grunt.registerTask(
@@ -164,14 +164,14 @@ module.exports = function (grunt) {
 
     //Run as => grunt
     grunt.registerTask('default', [
-        'clean:build', 'copy','autoprefixer','ngAnnotate', 'useminPrepare' , 'uglify', 'cssmin',  'htmlmin','usemin', 'cleanBuild'
+        'clean:build', 'copy','autoprefixer','ngAnnotate', 'useminPrepare','concat' , 'uglify', 'cssmin',  'htmlmin','usemin', 'cleanBuild'
     ]);
 
     //Run as => grunt build
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory.',
-        ['clean:build','copy','html','stylesheets','scripts','usemin','cleanBuild']
+        ['clean:build','copy','html','concat','stylesheets','scripts','usemin','cleanBuild']
     );
 
     //Run as => grunt serve
