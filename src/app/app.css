@@ -32,7 +32,7 @@
 
 .videogular-container {
   width: 100%;
-  height: 500px;
+  height: 50%;
   margin: auto;
   overflow: hidden;
 }
@@ -95,4 +95,22 @@ ul.rating {
 
 .rating .filled {
   color: #fd0;
+}
+
+
+.video-container {
+  background: whitesmoke;
+  /*border: 1px ;*/
+  padding:5px;
+}
+
+.padding-top-60 {
+   padding-top: 60px;
+ }
+.padding-top-60 a {
+  text-decoration: none;
+  text-align: center;
+  padding: 1px;
+  font-weight: bold;
+  color: #000;
 }

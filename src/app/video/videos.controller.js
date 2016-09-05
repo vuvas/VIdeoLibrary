@@ -53,7 +53,12 @@ function VideosController($scope, ApiService,$sce,HelperService) {
                 autoHide: false ,
                 autoHideTime: 5000
             }
+        },
+        options:{
+            width: 285,
+            height:160
         }
+
     };
 
     $scope.saveRating = function(video){

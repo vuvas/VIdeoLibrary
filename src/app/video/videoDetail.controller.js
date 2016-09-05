@@ -13,7 +13,7 @@ function VideoDetailController($scope, ApiService,$sce,$route,HelperService,Vide
     $scope.videoId = $route.current.params.videoId;
 
 
-    var pageSize = 11, page = 0;
+    var pageSize = 10, page = 0;
     var inProgress = true;
 
     $scope.loadVideos = function () {
@@ -69,8 +69,8 @@ function VideoDetailController($scope, ApiService,$sce,$route,HelperService,Vide
 
     this.config = {
         preload: "none",
-        useNativeControls: true,
-        src: $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url),
+        //useNativeControls: true,
+        //src: $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url),
         type: "video/mp4"
         ,
         theme: {
