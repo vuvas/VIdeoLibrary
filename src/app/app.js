@@ -26,7 +26,7 @@ angular.module('myApp', [
             templateUrl: 'app/video/videos.html',
             controller: 'VideosCtrl'
         }).when('/video/:videoId', {
-            templateUrl: 'app/video/video-detail.html',
+            templateUrl: 'app/video/videoDetail.html',
             controller: 'VideoDetailCtrl'
         }).otherwise({redirectTo: '/login'});
     }]);

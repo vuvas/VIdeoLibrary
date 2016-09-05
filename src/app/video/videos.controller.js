@@ -3,11 +3,12 @@
 angular.module('myApp.controllers')
     .controller('VideosCtrl', VideosController);
 
-function VideosController($scope, ApiService,$sce) {
+function VideosController($scope, ApiService,$sce,HelperService) {
     $scope.videos = [];
     $scope.rootURL = RootAPIUrl;
     var pageSize = 10, page = 0;
     var inProgress = true;
+    $scope.max = RatingMaxValue;
 
     $scope.loadVideos = function () {
         if (inProgress) {
@@ -18,13 +19,9 @@ function VideosController($scope, ApiService,$sce) {
             ApiService.GetObject(API.Video.Get.Videos, param).then(function (response) {
                 if (response.status == "success") {
                     $scope.videos = $scope.videos.concat(response.data);
-                        var sum = 0;
-                    _.forEach($scope.videos,function(v){
+                    _.each($scope.videos,function(v){
                          v.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + v.url);
-                         v.rating = Math.round(_.reduce(v.ratings, function(memo, num) {
-                                 return memo + num;
-                             }, 0) / (v.ratings.length === 0 ? 1 : v.ratings.length));
-                        return v;
+                         v.rating = Math.round(HelperService.avg(v.ratings));
                     });
                     page++;
                 } else {
@@ -53,5 +50,4 @@ function VideosController($scope, ApiService,$sce) {
 
     //Fetch first 10 videos
     $scope.loadVideos();
-    console.log("v",$scope.videos);
 }

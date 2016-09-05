@@ -3,17 +3,16 @@
 angular.module('myApp.controllers')
     .controller('VideoDetailCtrl', VideoDetailController);
 
-function VideoDetailController($scope, ApiService,$sce,$route) {
-    //$scope.videos = [];
+function VideoDetailController($scope, ApiService,$sce,$route,VideoService) {
     $scope.video = {};
+    $scope.videos = [];
+
     $scope.rootURL = RootAPIUrl;
+    $scope.max = RatingMaxValue;
     $scope.videoId = $route.current.params.videoId;
 
-    $scope.max = RatingMaxValue;
-    $scope.rating = 4;
 
-    $scope.videos = [];
-    $scope.rootURL = RootAPIUrl;
+
     var pageSize = 11, page = 0;
     var inProgress = true;
 
@@ -27,8 +26,10 @@ function VideoDetailController($scope, ApiService,$sce,$route) {
                 if (response.status == "success") {
                     $scope.videos = $scope.videos.concat(response.data);
 
-                    _.forEach($scope.videos,function(v){
-                        return v.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + v.url);
+                    _.each($scope.videos,function(v){
+                        v.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + v.url);
+                        v.rating = Math.round(HelperService.avg(v.ratings));
+                        return v;
                     });
                     page++;
                 } else {
@@ -38,24 +39,19 @@ function VideoDetailController($scope, ApiService,$sce,$route) {
 
         }
     };
-
-
+    $scope.loadVideos();
+    console.log("videos",$scope.videos);
 
     ApiService.GetObject(API.Video.Get.Video, {videoId:$scope.videoId})
         .then(function (response) {
 
-        if (response.status == "success") {
-            console.log("su");
-            $scope.video = response.data;
-            var sum  =  _.reduce($scope.video.ratings, function(memo, num)
-                    {
-                        return memo + num;
-                    }, 0) / $scope.video.ratings.length;
+            if (response.status == "success") {
+                $scope.video = response.data;
+                $scope.video.trustedURL = $sce.trustAsResourceUrl(rootURL + $scope.video.url);
+                $scope.video.rating = Math.round(HelperService.avg($scope.video.ratings));
+            }
 
-            $scope.video.rating = Math.round(sum);
-            console.log($scope.video);
-        }
-    });
+        });
 
 
     $scope.saveRating = function(video){
@@ -66,9 +62,10 @@ function VideoDetailController($scope, ApiService,$sce,$route) {
         ApiService.Post(API.Video.Post.Rate).save($scope.rate,function(response){
             if(response.status = "success"){
                 $scope.video = response.data;
+                $scope.video.rating = Math.round(HelperService.avg($scope.video.ratings));
             }
         });
-    }
+    };
 
 
 
@@ -91,7 +88,6 @@ function VideoDetailController($scope, ApiService,$sce,$route) {
 
 
 
-    $scope.loadVideos();
-    console.log("videos",$scope.videos);
+
 
 }
