@@ -22,6 +22,14 @@ module.exports = function (grunt) {
                 src: ['**'],
                 dest: '<%= config.dist %>',
                 expand: true
+            },
+            fonts: {
+                cwd: 'bower_components',
+                src: ['**/*.{eot,svg,ttf,woff,otf}'],
+                dest: '<%= config.dist %>/fonts',
+                expand: true,
+                filter: 'isFile',
+                flatten: true
             }
         },
         clean: {
