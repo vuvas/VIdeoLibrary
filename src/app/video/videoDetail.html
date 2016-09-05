@@ -45,8 +45,6 @@
                         <vg-scrub-bar>
                             <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
                         </vg-scrub-bar>
-                        <!--<vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>-->
-                        <!--<vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>-->
                         <vg-volume>
                             <vg-mute-button></vg-mute-button>
                             <vg-volume-bar></vg-volume-bar>
@@ -56,7 +54,7 @@
                     </vg-controls>
                 </videogular>
                 <br/>
-                <div rating rating-value="rating" max="max" on-rating-selected="saveRating(v)"></div>
+                <!--<div rating rating-value="rating" max="max" on-rating-selected="saveRating(v)"></div>-->
                 <hr/>
                 <p>{{v.description | limitTo: 100}}{{v.description > 100 ? '...' : '' }}</p>
             </div>
