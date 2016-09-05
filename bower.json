@@ -18,6 +18,7 @@
     "angular-md5": "~0.1.10",
     "videogular": "~1.4.4",
     "videogular-controls": "~1.4.4",
-    "videogular-themes-default": "~1.4.4"
+    "videogular-themes-default": "~1.4.4",
+    "gridstack": "~0.2.6"
   }
 }
