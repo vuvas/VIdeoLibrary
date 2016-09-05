@@ -1,4 +1,3 @@
-
 <div class="container"
      lazy-scroll="loadVideos()"
      lazy-scroll-trigger="80"
@@ -8,39 +7,43 @@
             <h1 class="page-header">Video Gallery</h1>
         </div>
     </div>
+    <div grid-stack-widget gridstack-options="gridstackOptions">
+        <div class="grid-stack-item" ng-repeat="video in videos">
+            <div class="grid-stack-item-content">
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    <a class="thumbnail" href="#!/video/{{video._id}}">{{video.name}}</a>
+                    <videogular vg-theme="config.theme.url">
+                        <vg-media vg-src="video.trustedURL"
+                                  vg-native-controls="config.useNativeControls"
+                                  vg-tracks="config.tracks">
+                        </vg-media>
+                        <vg-controls
+                                vg-autohide="config.plugins.controls.autoHide"
+                                vg-autohide-time="config.plugins.controls.autoHideTime">
+                            <vg-play-pause-button>
+                            </vg-play-pause-button>
+                            <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                            <vg-scrub-bar>
+                                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            </vg-scrub-bar>
+                            <!--<vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>-->
+                            <!--<vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>-->
+                            <vg-volume>
+                                <vg-mute-button></vg-mute-button>
+                                <vg-volume-bar></vg-volume-bar>
+                            </vg-volume>
+                            <vg-playback-button></vg-playback-button>
+                            <vg-fullscreen-button></vg-fullscreen-button>
+                        </vg-controls>
+                    </videogular>
+                    <br/>
 
-    <div class="row" ng-repeat="video in videos">
-        <div class="col-lg-4 col-md-4 col-xs-6">
-            <a class="thumbnail" href="#!/video/{{video._id}}">{{video.name}}</a>
-            <videogular vg-theme="config.theme.url">
-                <vg-media vg-src="video.trustedURL"
-                          vg-native-controls="config.useNativeControls"
-                          vg-tracks="config.tracks">
-                </vg-media>
-                <vg-controls
-                        vg-autohide="config.plugins.controls.autoHide"
-                        vg-autohide-time="config.plugins.controls.autoHideTime">
-                    <vg-play-pause-button>
-                    </vg-play-pause-button>
-                    <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
-                    <vg-scrub-bar>
-                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-                    </vg-scrub-bar>
-                    <!--<vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>-->
-                    <!--<vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>-->
-                    <vg-volume>
-                        <vg-mute-button></vg-mute-button>
-                        <vg-volume-bar></vg-volume-bar>
-                    </vg-volume>
-                    <vg-playback-button></vg-playback-button>
-                    <vg-fullscreen-button></vg-fullscreen-button>
-                </vg-controls>
-            </videogular>
-            <br/>
-            <div rating rating-value="video.rating" max="max" on-rating-selected="saveRating(video)"></div>
-            <hr/>
-            <p>{{video.description}}</p>
+                    <div rating rating-value="video.rating" max="max" on-rating-selected="saveRating(video)"></div>
+                    <hr/>
+                    <p>{{video.description}}</p>
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
+

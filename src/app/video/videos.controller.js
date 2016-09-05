@@ -9,6 +9,14 @@ function VideosController($scope, ApiService,$sce,HelperService) {
     var pageSize = 10, page = 0;
     var inProgress = true;
     $scope.max = RatingMaxValue;
+    $scope.gridstackOptions = {
+        animate: true,
+        cell_height: 80,
+        vertical_margin: 20,
+        float: false,
+        width: 12,
+        height:12
+    };
 
     $scope.loadVideos = function () {
         if (inProgress) {
