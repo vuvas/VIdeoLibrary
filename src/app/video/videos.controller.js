@@ -48,6 +48,22 @@ function VideosController($scope, ApiService,$sce,HelperService) {
         }
     };
 
+    $scope.saveRating = function(video){
+        $scope.rate = {
+            videoId:video._id,
+            rating: video.rating
+        };
+
+
+        ApiService.Post(API.Video.Post.Rate,{}).save($scope.rate,function(response){
+            if(response.status = "success"){
+                //$scope.video = response.data;
+                //$scope.video.rating = Math.round(HelperService.avg($scope.video.ratings));
+                //$scope.video.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url);
+                //console.log("rated up",$scope.video);
+            }
+        });
+    };
     //Fetch first 10 videos
     $scope.loadVideos();
 }

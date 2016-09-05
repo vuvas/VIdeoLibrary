@@ -8,6 +8,17 @@ angular.module('myApp.services')
             return RootAPIUrl + resourceUrl;
         };
 
+        var buildPostUrl = function (resourceUrl, params) {
+            var paramStr = '?';
+            var fullParam = buildParams(params);
+            var properties = _.allKeys(fullParam);
+            _.each(properties, function(property){
+                paramStr += property + '=' + fullParam[property];
+            });
+
+            return  RootAPIUrl + resourceUrl + paramStr;
+        };
+
         var buildParams = function (params) {
             var fullParams = params;
             var sessionId =  StorageService.Get(SessionLocalStorageKey);
@@ -26,8 +37,8 @@ angular.module('myApp.services')
             GetObject: function (api, params) {
                 return $resource(buildUrl(api),{}, GETObject).get(buildParams(params)).$promise;
             },
-            Post: function (api) {
-                return $resource(buildUrl(api),POST);
+            Post: function (api, params) {
+                return $resource(buildPostUrl(api,params),POST);
             }
         }
     });

@@ -3,14 +3,14 @@
 angular.module('myApp.controllers')
     .controller('VideoDetailCtrl', VideoDetailController);
 
-function VideoDetailController($scope, ApiService,$sce,$route,VideoService) {
+function VideoDetailController($scope, ApiService,$sce,$route,HelperService,VideoService) {
     $scope.video = {};
+    $scope.video.rating = 0;
     $scope.videos = [];
 
     $scope.rootURL = RootAPIUrl;
     $scope.max = RatingMaxValue;
     $scope.videoId = $route.current.params.videoId;
-
 
 
     var pageSize = 11, page = 0;
@@ -29,7 +29,6 @@ function VideoDetailController($scope, ApiService,$sce,$route,VideoService) {
                     _.each($scope.videos,function(v){
                         v.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + v.url);
                         v.rating = Math.round(HelperService.avg(v.ratings));
-                        return v;
                     });
                     page++;
                 } else {
@@ -40,14 +39,12 @@ function VideoDetailController($scope, ApiService,$sce,$route,VideoService) {
         }
     };
     $scope.loadVideos();
-    console.log("videos",$scope.videos);
 
     ApiService.GetObject(API.Video.Get.Video, {videoId:$scope.videoId})
         .then(function (response) {
-
             if (response.status == "success") {
                 $scope.video = response.data;
-                $scope.video.trustedURL = $sce.trustAsResourceUrl(rootURL + $scope.video.url);
+                $scope.video.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url);
                 $scope.video.rating = Math.round(HelperService.avg($scope.video.ratings));
             }
 
@@ -57,8 +54,9 @@ function VideoDetailController($scope, ApiService,$sce,$route,VideoService) {
     $scope.saveRating = function(video){
         $scope.rate = {
             videoId:video._id,
-            rating:$scope.rating
+            rating: video.rating
         };
+
         ApiService.Post(API.Video.Post.Rate).save($scope.rate,function(response){
             if(response.status = "success"){
                 $scope.video = response.data;
