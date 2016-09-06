@@ -15,6 +15,22 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'bower_components/angular/angular.min.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+        'bower_components/angular-route/angular-route.min.js',
+        'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-cookies/angular-cookies.min.js',
+        'bower_components/angular-md5/angular-md5.min.js',
+        'bower_components/ngstorage/ngStorage.min.js',
+        'bower_components/underscore/underscore-min.js',
+        'bower_components/angular-sanitize/angular-sanitize.min.js',
+        'bower_components/videogular/videogular.min.js',
+        'bower_components/videogular-controls/vg-controls.min.js',
+
+
+        'src/app/**/*.js',
+        'src/common/**/*.js',
+        'src/tests/services/**/*.js'
     ],
 
 

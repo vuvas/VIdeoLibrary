@@ -9,12 +9,17 @@ function UserService(StorageService){
 
     service.SetCredentials = SetCredentials;
     service.ClearCredentials = ClearCredentials;
+    service.GetCredentials =  GetCredentials;
 
     return service;
 
 
     function SetCredentials(sessionId) {
         StorageService.Set(SessionLocalStorageKey, sessionId);
+    }
+
+    function GetCredentials() {
+        StorageService.Get(SessionLocalStorageKey);
     }
 
     function ClearCredentials() {
