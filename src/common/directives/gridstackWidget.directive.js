@@ -1,6 +1,3 @@
-/**
- * Created by Jared on Sep 05, 2016.
- */
 angular.module('myApp.directives')
     .directive('gridstatckWidget', function($rootScope, $window) {
         return {

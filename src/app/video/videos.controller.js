@@ -6,13 +6,14 @@ angular.module('myApp.controllers')
 function VideosController($scope, ApiService,$sce,HelperService) {
     $scope.videos = [];
     $scope.rootURL = RootAPIUrl;
-    var pageSize = 10, page = 0;
+    var pageSize = 12, page = 0;
     var inProgress = true;
     $scope.max = RatingMaxValue;
+
     $scope.gridstackOptions = {
         animate: true,
         cell_height: 80,
-        vertical_margin: 20,
+        vertical_margin: 10,
         float: false,
         width: 12,
         height:12
@@ -29,7 +30,7 @@ function VideosController($scope, ApiService,$sce,HelperService) {
                     $scope.videos = $scope.videos.concat(response.data);
                     _.each($scope.videos,function(v){
                          v.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + v.url);
-                         v.rating = Math.round(HelperService.avg(v.ratings));
+                         v.ratingValue = Math.round(HelperService.avg(v.ratings));
                     });
                     page++;
                 } else {
@@ -64,18 +65,18 @@ function VideosController($scope, ApiService,$sce,HelperService) {
     $scope.saveRating = function(video){
         $scope.rate = {
             videoId:video._id,
-            rating: video.rating
+            rating: video.ratingValue
         };
-
-
-        ApiService.Post(API.Video.Post.Rate,{}).save($scope.rate,function(response){
-            if(response.status = "success"){
-                //$scope.video = response.data;
-                //$scope.video.rating = Math.round(HelperService.avg($scope.video.ratings));
-                //$scope.video.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url);
-                //console.log("rated up",$scope.video);
-            }
-        });
+        console.log("rated ",$scope.rate.videoId," to ",$scope.rate.rating ," stars");
+        //ApiService.Post(API.Video.Post.Rate,{}).save($scope.rate,function(response){
+        //    if(response.status = "success")
+        //    {
+        //        console.log("rated ",$scope.rate.videoId," to ",$scope.rate.rating ," stars");
+        //        $scope.video = response.data;
+        //        $scope.video.ratingValue = Math.round(HelperService.avg($scope.video.ratings));
+        //        $scope.video.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url);
+        //    }
+        //});
     };
     //Fetch first 10 videos
     $scope.loadVideos();

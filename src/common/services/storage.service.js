@@ -1,6 +1,3 @@
-/**
- * Created by Jared on Sep 03, 2016.
- */
 
 angular.module('myApp.services')
     .factory('StorageService', function ($localStorage) {
@@ -14,6 +11,5 @@ angular.module('myApp.services')
             Delete: function(key){
                 delete $localStorage[key];
             }
-
         }
     });

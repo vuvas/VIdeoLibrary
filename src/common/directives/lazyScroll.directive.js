@@ -1,17 +1,15 @@
-/**
- * Created by Jared on Sep 04, 2016.
- */
 
 angular.module('myApp.directives')
 .directive('lazyScroll', function($rootScope, $window) {
         return {
             link: function(scope, elem, attrs) {
 
-                var scrollEnabled, loadData, scrollTrigger = .90,scrollEnabled = true;;
+                var scrollEnabled, loadData, scrollTrigger = .90,scrollEnabled = true;
                 $window = angular.element($window);
                 if (attrs.lazyNoScroll != null) {
                     scope.$watch(attrs.lazyNoScroll, function(value) {
-                        scrollEnabled = (value == true) ? false : true;
+                        //scrollEnabled = (value == true) ? false : true;
+                        scrollEnabled = value != true;
                     });
                 }
 
@@ -36,5 +34,5 @@ angular.module('myApp.directives')
                 });
             }
         };
-    }
-);
+    })
+;

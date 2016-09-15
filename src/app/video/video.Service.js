@@ -5,9 +5,11 @@ angular.module('myApp.services').factory('VideoService', VideoService);
 
 function VideoService(ApiService,$sce,HelperService) {
     var video = {};
+
     var rootURL = RootAPIUrl;
 
     var loadVideos = function (param) {
+
             ApiService.GetObject(API.Video.Get.Videos, param).then(function (response) {
                 if (response.status == "success") {
                    var videos = response.data;
@@ -42,11 +44,11 @@ function VideoService(ApiService,$sce,HelperService) {
                 video = response.data;
                 video.rating = Math.round(HelperService.avg(video.ratings));
                 video.trustedURL = $sce.trustAsResourceUrl(rootURL + video.url);
+                console.log("rated ",video.name," to ",video.rating ," stars");
             }
         });
         return video;
     };
-
 
     return {
         videos: function(param){

@@ -1,6 +1,4 @@
-/**
- * Created by Jared on Sep 06, 2016.
- */
+
 
 describe('UserService tests', function () {
     var UserService, storageServiceMock;

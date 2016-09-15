@@ -1,6 +1,3 @@
-/**
- * Created by Jared on Sep 03, 2016.
- */
 
 angular.module('myApp.services')
     .factory('ApiService', function ($resource,StorageService) {

@@ -9,6 +9,7 @@ function VideoDetailController($scope, ApiService,$sce,$route,HelperService,Vide
     $scope.videos = [];
 
     $scope.rootURL = RootAPIUrl;
+    $scope.rating = {};
     $scope.max = RatingMaxValue;
     $scope.videoId = $route.current.params.videoId;
 
@@ -61,11 +62,10 @@ function VideoDetailController($scope, ApiService,$sce,$route,HelperService,Vide
             if(response.status = "success"){
                 $scope.video = response.data;
                 $scope.video.rating = Math.round(HelperService.avg($scope.video.ratings));
+                console.log("rated ",$scope.video.name," to ",$scope.rate.rating ," stars"," Average rating is now "+$scope.video.rating+" stars");
             }
         });
     };
-
-
 
     this.config = {
         preload: "none",
@@ -84,7 +84,11 @@ function VideoDetailController($scope, ApiService,$sce,$route,HelperService,Vide
         }
     };
 
-
+    $scope.SelectedVideoStyle = function(video){
+        if(video._id == $scope.videoId){
+            return 'label label-info';
+        }
+    }
 
 
 
