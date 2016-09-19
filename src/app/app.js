@@ -25,13 +25,12 @@ angular.module('myApp', [
         }).when('/video', {
             templateUrl: 'app/video/videos.html',
             controller: 'VideosCtrl'
-        }).when('/logout',
-            {
-                redirectTo: '/login'
-            }).when('/video/:videoId', {
-                templateUrl: 'app/video/videoDetail.html',
-                controller: 'VideoDetailCtrl'
-            }).otherwise({redirectTo: '/login'});
+        }).when('/logout', {
+           redirectTo: '/login'
+        }).when('/video/:videoId', {
+           templateUrl: 'app/video/videoDetail.html',
+           controller: 'VideoDetailCtrl'
+       }).otherwise({redirectTo: '/login'});
     }]);
 
 //Initializations

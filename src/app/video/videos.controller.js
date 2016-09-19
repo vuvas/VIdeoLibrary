@@ -62,21 +62,22 @@ function VideosController($scope, ApiService,$sce,HelperService) {
 
     };
 
+
     $scope.saveRating = function(video){
         $scope.rate = {
             videoId:video._id,
             rating: video.ratingValue
         };
-        console.log("rated ",$scope.rate.videoId," to ",$scope.rate.rating ," stars");
-        //ApiService.Post(API.Video.Post.Rate,{}).save($scope.rate,function(response){
-        //    if(response.status = "success")
-        //    {
-        //        console.log("rated ",$scope.rate.videoId," to ",$scope.rate.rating ," stars");
-        //        $scope.video = response.data;
-        //        $scope.video.ratingValue = Math.round(HelperService.avg($scope.video.ratings));
-        //        $scope.video.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url);
-        //    }
-        //});
+        //console.log("rated ",$scope.rate.videoId," to ",$scope.rate.rating ," stars");
+        ApiService.Post(API.Video.Post.Rate,{}).save($scope.rate,function(response){
+            if(response.status = "success")
+            {
+                console.log("rated ",$scope.rate.videoId," to ",$scope.rate.rating ," stars");
+                $scope.video = response.data;
+                $scope.video.ratingValue = Math.round(HelperService.avg($scope.video.ratings));
+                $scope.video.trustedURL = $sce.trustAsResourceUrl($scope.rootURL + $scope.video.url);
+            }
+        });
     };
     //Fetch first 10 videos
     $scope.loadVideos();

@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         'bower_components/angular/angular.min.js',
-      'bower_components/angular-mocks/angular-mocks.js',
+        'bower_components/angular-mocks/angular-mocks.js',
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/angular-resource/angular-resource.min.js',
         'bower_components/angular-cookies/angular-cookies.min.js',
@@ -28,9 +28,11 @@ module.exports = function(config) {
         'bower_components/videogular-controls/vg-controls.min.js',
 
 
+
         'src/app/**/*.js',
         'src/common/**/*.js',
         'src/tests/services/**/*.js'
+        //'src/tests/controllers/**/*.js'
     ],
 
 
@@ -75,7 +77,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
